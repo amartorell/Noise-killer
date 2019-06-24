@@ -10,7 +10,7 @@ EFFECT_TYPE hashit (int const& in,data& d);
 int main()
 {
     AudioFile<double> audioFile;
-    audioFile.load ("C:\\Users\\juan_\\CLionProjects\\Noise-killer\\test.wav");//abro el wav que quiero leer
+    audioFile.load ("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\rodri_1.wav");//abro el wav que quiero leer
     int sampleRate = audioFile.getSampleRate();//guardo parámetros del archivo (frecuencia de sampleo)
     int bitDepth = audioFile.getBitDepth();//(bitdepth)
     int numSamples = audioFile.getNumSamplesPerChannel();//cantidad de muestras
@@ -68,7 +68,7 @@ int main()
     outFile.setBitDepth (bitDepth);//mantengo el bitdepth del archivo de entrada
     outFile.setSampleRate (sampleRate);//mantengo el samplerate
     bool ok = outFile.setAudioBuffer (buffer);//se le agrega el buffer previo
-    outFile.save (std::string("C:\\Users\\juan_\\CLionProjects\\Noise-killer\\")+std::string("out3") +std::string(".wav"));//se crea y guarda el archivo deseado
+    outFile.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("rodri_2") +std::string(".wav"));//se crea y guarda el archivo deseado
     return 0;
 }
 

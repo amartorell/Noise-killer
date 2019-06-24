@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug/CMakeFiles/ej8norealtime.dir/embed.manifest"

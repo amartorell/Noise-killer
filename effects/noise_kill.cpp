@@ -101,15 +101,21 @@ void noise_kill::noise_mean_calculator(std::vector<std::complex<float>>& in, std
 {
 	if (win_noise > 0)  // divido a cada
 	{
-        fft(in, out);//calculo la fft de la ventana actual
+        std::vector<std::complex<float>> aux_out(this->len,0);
+        fft(in, aux_out);//calculo la fft de la ventana actual
 		for (int i = 0; i < out.size(); i++)  //divido cada elemento por n y se lo sumo elemento a elemento el vector
 		{
-			out[i] = ((out[i]) / (std::complex<float>(MAX_NOISE_WINDOW)));
-			this->noise_mean[i] = ((this->noise_mean[i]) + out[i]);  //hacer que noise mean tenga todos ceros primeros
-            out[i] = ((out[i]) * (std::complex<float>(MAX_NOISE_WINDOW)));
+			aux_out[i] = ((norma_compleja(aux_out[i]))  / (std::complex<float>(MAX_NOISE_WINDOW)) );
+			this->noise_mean[i] = ((this->noise_mean[i]) + aux_out[i]);  //hacer que noise mean tenga todos ceros primeros
+			//if(win_noise == 15)
+            //{
+             //   std::cout<<"tu_vieja"<< i <<" "<< aux_out[i]<<std::endl;
+            //    std::cout<<"norma_ruido "<< i <<" "<< noise_mean[i]<<std::endl;
+           // }
+            aux_out[i] = ((aux_out[i]) * (std::complex<float>(MAX_NOISE_WINDOW)));
 		}
         this->win_noise--;
-        ifft(out, in);//calculo la ifft de lo obtenido
+        ifft(aux_out, in);//calculo la ifft de lo obtenido
 	}
 
 };
@@ -142,7 +148,7 @@ void noise_kill::calculate_halfwave_rectification()
             if(((norma_compleja((this->H_base[i]))).real()) < 0.0001)   //esto es porque el ruido es mas bajo que lo estimado
             {
                 this->H_base[i]=std::complex<float>(0);
-                std::cout<<"entro aca"<<i<<std::endl;
+                //std::cout<<"entro aca"<<i<<std::endl;
             }
 
             this->H_base[i] = (norma_compleja(this->H_base[i]) + (this->H_base[i])) / std::complex<float>(2);
@@ -155,16 +161,16 @@ void noise_kill::calculate_halfwave_rectification()
 
 void noise_kill::calculate_signal_out(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
 {
-    if(win_noise==0)
-    {
         fft(in,out);
         for (int i = 0; i < out.size(); i++)
         {
+            //std::cout<<"tu_vieja"<< i <<" "<<out[i]<<std::endl;
             out[i] = (this->H_base[i])*(out[i]);
+           // std::cout<<"despues de transformar"<< i <<" "<< out[i]<<std::endl;
         }
 
         ifft(out, in);
-    }
+
 
 }
 

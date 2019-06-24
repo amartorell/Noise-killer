@@ -4,7 +4,7 @@
 
 #ifndef EJERCICIO8_NOISE_KILL_H
 #define EJERCICIO8_NOISE_KILL_H
-#define MAX_NOISE_WINDOW	50
+#define MAX_NOISE_WINDOW	80
 #define MAX_AVERAGING_WINDOW 3.0
 #include "generic_effect.h"
 

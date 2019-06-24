@@ -17,7 +17,7 @@ file(REMOVE_RECURSE
   "ej8norealtime.pdb"
   "ej8norealtime.exe"
   "ej8norealtime.exe.manifest"
-  "libej8norealtime.dll.a"
+  "ej8norealtime.lib"
 )
 
 # Per-language clean rules from dependency scanning.

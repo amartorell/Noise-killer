@@ -4,170 +4,174 @@
 	<Project>
 		<Option title="ej8norealtime"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
+		<Option compiler="msvc8"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug"/>
+				<Option working_dir="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug"/>
+				<Option working_dir="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ej8norealtime">
-				<Option output="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/ej8norealtime.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug"/>
+				<Option output="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug/ej8norealtime.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 ej8norealtime"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 ej8norealtime"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ej8norealtime/fast">
-				<Option output="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/ej8norealtime.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug"/>
+				<Option output="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug/ej8norealtime.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 ej8norealtime/fast"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 ej8norealtime/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug"/>
+				<Option working_dir="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/juan_/CLionProjects/Noise-killer/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\marth\Documents\ITBA\ASSD\TP4\noise_killer\Noise-killer\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/AudioFile.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/AudioFile.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/AudioFile.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/AudioFile.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/eco_simple.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/eco_simple.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/eco_simple.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/eco_simple.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/effect_factory.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/effect_factory.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/effect_factory.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/effect_factory.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/flanger.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/flanger.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/flanger.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/flanger.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/generic_effect.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/generic_effect.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/generic_effect.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/generic_effect.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/no_effect.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/no_effect.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/no_effect.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/no_effect.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/noise_kill.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/noise_kill.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/noise_kill.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/noise_kill.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_allp.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_allp.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_allp.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_allp.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_cmp.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_cmp.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_cmp.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_cmp.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_conv.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_conv.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_conv.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_conv.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_pb.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_pb.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_pb.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_pb.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_pln.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_pln.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/reverb_pln.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/reverb_pln.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/vibrato.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/vibrato.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/effects/vibrato.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/effects/vibrato.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/fft.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/fft.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/fft.h">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/fft.h">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/main.cpp">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/main.cpp">
 			<Option target="ej8norealtime"/>
 		</Unit>
-		<Unit filename="C:/Users/juan_/CLionProjects/Noise-killer/CMakeLists.txt">
+		<Unit filename="C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/Noise-killer/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
