@@ -2,13 +2,13 @@
 // Created by juan_ on 4/28/2019.
 //
 
-#ifndef EJERCICIO8_ROBOT_H
-#define EJERCICIO8_ROBOT_H
-#define MAX_NOISE_WINDOW	20
+#ifndef EJERCICIO8_NOISE_KILL_H
+#define EJERCICIO8_NOISE_KILL_H
+#define MAX_NOISE_WINDOW	50
 #define MAX_AVERAGING_WINDOW 3.0
 #include "generic_effect.h"
 
-class robot: public generic_effect
+class noise_kill: public generic_effect
 {
 public:
     void init(int w_len, float fs,data d) override ;
@@ -23,7 +23,7 @@ public:
 
 	void calculate_signal_out(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels);
 
-	void termminate_noise(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels=0);
+	void terminate_noise(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels=0);
 
 
     int len;
@@ -44,7 +44,7 @@ public:
     std::vector<std::complex<float>> curr_out_left;
     std::vector<std::complex<float>> aux_left;
     std::vector<std::complex<float>> aux_right;
-    robot(){};
+    noise_kill(){};
 
 
 };

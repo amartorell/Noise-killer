@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/AudioFile.h
+C:/Users/juan_/CLionProjects/Noise-killer/AudioFile.h
 iostream
 -
 vector
@@ -16,17 +16,17 @@ assert.h
 string
 -
 
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/effects/effect_factory.h
+C:/Users/juan_/CLionProjects/Noise-killer/effects/effect_factory.h
 generic_effect.h
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/effects/generic_effect.h
+C:/Users/juan_/CLionProjects/Noise-killer/effects/generic_effect.h
 
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/effects/generic_effect.h
+C:/Users/juan_/CLionProjects/Noise-killer/effects/generic_effect.h
 ../fft.h
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/fft.h
+C:/Users/juan_/CLionProjects/Noise-killer/fft.h
 string
 -
 
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/fft.h
+C:/Users/juan_/CLionProjects/Noise-killer/fft.h
 complex
 -
 iostream
@@ -38,15 +38,15 @@ algorithm
 math.h
 -
 
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/main.cpp
+C:/Users/juan_/CLionProjects/Noise-killer/main.cpp
 iostream
 -
 effects/generic_effect.h
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/effects/generic_effect.h
+C:/Users/juan_/CLionProjects/Noise-killer/effects/generic_effect.h
 effects/effect_factory.h
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/effects/effect_factory.h
+C:/Users/juan_/CLionProjects/Noise-killer/effects/effect_factory.h
 AudioFile.h
-C:/Users/marth/Documents/ITBA/ASSD/TP4/noise_killer/AudioFile.h
+C:/Users/juan_/CLionProjects/Noise-killer/AudioFile.h
 string
 -
 

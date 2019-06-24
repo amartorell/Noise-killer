@@ -2,7 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ej8norealtime.dir/main.cpp.obj"
   "CMakeFiles/ej8norealtime.dir/AudioFile.cpp.obj"
   "CMakeFiles/ej8norealtime.dir/fft.cpp.obj"
-  "CMakeFiles/ej8norealtime.dir/effects/robot.cpp.obj"
+  "CMakeFiles/ej8norealtime.dir/effects/noise_kill.cpp.obj"
   "CMakeFiles/ej8norealtime.dir/effects/generic_effect.cpp.obj"
   "CMakeFiles/ej8norealtime.dir/effects/effect_factory.cpp.obj"
   "CMakeFiles/ej8norealtime.dir/effects/flanger.cpp.obj"
@@ -17,7 +17,7 @@ file(REMOVE_RECURSE
   "ej8norealtime.pdb"
   "ej8norealtime.exe"
   "ej8norealtime.exe.manifest"
-  "ej8norealtime.lib"
+  "libej8norealtime.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

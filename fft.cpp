@@ -2684,7 +2684,7 @@ void ifft(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>
 std::complex<float> norma_compleja(std::complex<float> a)
 {
     std::complex<float> temp;
-    temp=std::complex<float>(std::sqrtf((a.real()*a.real())+(a.imag()*a.imag())));
+    temp=std::complex<float>(std::sqrt((a.real()*a.real())+(a.imag()*a.imag())));
     return temp;
 
 

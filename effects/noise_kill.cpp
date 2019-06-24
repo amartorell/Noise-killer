@@ -2,12 +2,12 @@
 // Created by juan_ on 4/28/2019.
 //
 
-#include "robot.h"
+#include "noise_kill.h"
 
-void robot::init(int w_len, float fs,data d)
+void noise_kill::init(int w_len, float fs,data d)
 {
     //inicializo el robot generando los vectores auxiliares que voy a utilizar luego
-	win_noise = 30;
+	win_noise = MAX_NOISE_WINDOW;
     this->len=w_len;
     for(int i=0;i<w_len;i++)
     {
@@ -30,7 +30,7 @@ void robot::init(int w_len, float fs,data d)
 
 }
 
-void robot::do_effect(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,int n_channels)
+void noise_kill::do_effect(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,int n_channels)
 {
     for(int i=0;i<len/2;i++)
     {
@@ -43,8 +43,8 @@ void robot::do_effect(std::vector<std::complex<float>>& curr_left, std::vector<s
         }
 
     }
-    termminate_noise(aux_left,aux_left,n_channels);
-    termminate_noise(aux_right,aux_right,n_channels);
+    terminate_noise(aux_left,aux_left,n_channels);
+    terminate_noise(aux_right,aux_right,n_channels);
     //aca deberia sumar a la salida los aux
     //aca sumo a las samples del callback anterior
     for(int i=0;i<len;i++)
@@ -55,11 +55,9 @@ void robot::do_effect(std::vector<std::complex<float>>& curr_left, std::vector<s
             curr_out_right[i]=curr_right[i]*hanning(i);
         }
     }
-    //robotify(curr_out_left,curr_out_left,n_channels);
-    //robotify(curr_out_right,curr_out_right,n_channels);
 };
 
-void robot::update(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,float * out,int n_channels)
+void noise_kill::update(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,float * out,int n_channels)
 {
     for(int i=0;i<len;i++)
     {
@@ -94,98 +92,83 @@ void robot::update(std::vector<std::complex<float>>& curr_left, std::vector<std:
     std::swap(curr_out_right,prev_out_right);
 }
 
-float robot::hanning(int i)
+float noise_kill::hanning(int i)
 {
     return (0.5-(0.5)*cos(2*M_PI*i/((float)this->len-1)));//le aplico una ventana de hanning a las muestras
 };
 
-void robot::robotify(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out,int n_channels)
+void noise_kill::noise_mean_calculator(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
 {
-    fft(in,out);//calculo la fft de la ventana actual
-	if (win_noise > 0)  // divido a cada 
+	if (win_noise > 0)  // divido a cada
 	{
+        fft(in, out);//calculo la fft de la ventana actual
 		for (int i = 0; i < out.size(); i++)  //divido cada elemento por n y se lo sumo elemento a elemento el vector
 		{
 			out[i] = ((out[i]) / (std::complex<float>(MAX_NOISE_WINDOW)));
 			this->noise_mean[i] = ((this->noise_mean[i]) + out[i]);  //hacer que noise mean tenga todos ceros primeros
-
-			this->win_noise--;
+            out[i] = ((out[i]) * (std::complex<float>(MAX_NOISE_WINDOW)));
 		}
+        this->win_noise--;
+        ifft(out, in);//calculo la ifft de lo obtenido
 	}
-	for (int i = 0; i < this->len; i++)
-	{
-
-	}
-    ifft(out,in);//calculo la ifft de lo obtenido
-	
-};
-
-void robot::noise_mean_calculator(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
-{
-	fft(in, out);//calculo la fft de la ventana actual
-	if (win_noise > 0)  // divido a cada 
-	{
-		for (int i = 0; i < out.size(); i++)  //divido cada elemento por n y se lo sumo elemento a elemento el vector
-		{
-			out[i] = ((out[i]) / (std::complex<float>(MAX_NOISE_WINDOW)));
-			this->noise_mean[i] = ((this->noise_mean[i]) + out[i]);  //hacer que noise mean tenga todos ceros primeros
-			this->win_noise--;
-		}
-	}
-	//for (int i = 0; i < this->len; i++)
-	//{
-
-	//}
-
-	ifft(out, in);//calculo la ifft de lo obtenido
-};
-
-
-
-void robot::x_mean_calculator(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
-{
-	fft(in, out);
-	
-	
-	for (int i = 0; i < out.size(); i++)
-	{
-		out[i] = norma_compleja(out[i]);
-		this->ventana_anterior_transformada[i] = (((this->ventana_anterior_transformada[i]) + (this->ventana_anteanterior_transformada[i]) + (out[i])) / std::complex<float>(MAX_AVERAGING_WINDOW));
-		this->ventana_anteanterior_transformada[i]= (this->ventana_anterior_transformada[i]);
-	}
-	
-	ifft(out, in);
-
 
 };
 
-void robot::calculate_halfwave_rectification()
+void noise_kill::x_mean_calculator(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
 {
-
-	for (int i = 0; i < (this->noise_mean.size()); i++)
-	{
-		(this->H_base[i]) = ((std::complex<float>(1.0)) - (noise_mean[i]) / (ventana_anterior_transformada[i]));
-		if(((norma_compleja((this->H_base[i]))).real()) < 0.0001)   //esto es porque el ruido es mas bajo que lo estimado
+    if(win_noise==0)
+    {
+        std::vector<std::complex<float>> aux_in(in.begin(),in.end());
+        std::vector<std::complex<float>> aux_out(this->len,0);
+        fft(aux_in, aux_out);
+        for (int i = 0; i < out.size(); i++)
         {
-		    this->H_base[i]=std::complex<float>(0);
-            std::cout<<"entro aca"<<i<<std::endl;
+            aux_out[i] = norma_compleja(aux_out[i]);
+            this->ventana_anterior_transformada[i] = (((this->ventana_anterior_transformada[i]) + (this->ventana_anteanterior_transformada[i]) + (aux_out[i])) / std::complex<float>(MAX_AVERAGING_WINDOW));
+            this->ventana_anteanterior_transformada[i]= (this->ventana_anterior_transformada[i]);
+        }
+    }
+
+};
+
+void noise_kill::calculate_halfwave_rectification()
+{
+
+    if(win_noise==0)
+    {
+        for (int i = 0; i < (this->noise_mean.size()); i++)
+        {
+            (this->H_base[i]) = ((std::complex<float>(1.0)) - (noise_mean[i]) / (ventana_anterior_transformada[i]));
+            if(((norma_compleja((this->H_base[i]))).real()) < 0.0001)   //esto es porque el ruido es mas bajo que lo estimado
+            {
+                this->H_base[i]=std::complex<float>(0);
+                std::cout<<"entro aca"<<i<<std::endl;
+            }
+
+            this->H_base[i] = (norma_compleja(this->H_base[i]) + (this->H_base[i])) / std::complex<float>(2);
+
+        }
+    }
+
+
+}
+
+void noise_kill::calculate_signal_out(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
+{
+    if(win_noise==0)
+    {
+        fft(in,out);
+        for (int i = 0; i < out.size(); i++)
+        {
+            out[i] = (this->H_base[i])*(out[i]);
         }
 
-		this->H_base[i] = ((norma_compleja((this->H_base[i])) + (this->H_base[i])) / std::complex<float>(2));
-
-	}
+        ifft(out, in);
+    }
 
 }
-void robot::calculate_signal_out(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
-{
-	for (int i = 0; i < out.size(); i++)
-	{
-		out[i] = (this->H_base[i])*(out[i]);
-	}
 
-	ifft(out, in);
-}
-void robot::termminate_noise(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
+void noise_kill::terminate_noise(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels)
 {
 	noise_mean_calculator(in, out,0);
 	x_mean_calculator(in, out,0);

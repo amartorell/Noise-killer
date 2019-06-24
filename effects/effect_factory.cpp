@@ -4,7 +4,7 @@
 
 #include <memory>
 #include "effect_factory.h"
-#include "robot.h"
+#include "noise_kill.h"
 #include "flanger.h"
 #include "eco_simple.h"
 #include "reverb_pln.h"
@@ -24,7 +24,7 @@ generic_effect* effect_factory::newEffect(EFFECT_TYPE shipType) {
 
     switch(shipType) {
 
-        case ROBOT: return new robot();
+        case NOISE_KILL: return new noise_kill();
 
         case FLANGER: return new flanger();
 
@@ -39,8 +39,6 @@ generic_effect* effect_factory::newEffect(EFFECT_TYPE shipType) {
         case REVERB_CONV: return new reverb_conv();
 
         case VIBRATO: return new vibrato();
-
-            //case GIRO_3D: return new giro3d();
 
         default:       return new no_effect();
 
