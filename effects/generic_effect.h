@@ -22,6 +22,7 @@ public:
     virtual void init(int w_len, float fs,data d) =0;
     virtual void do_effect(std::vector<std::complex<float>>& left, std::vector<std::complex<float>>& right,int n_channels) =0;
     virtual void update(std::vector<std::complex<float>>& left, std::vector<std::complex<float>>& right,float * out,int n_channels) =0;
+    virtual void reset_stats(void)= 0;
 
 };
 

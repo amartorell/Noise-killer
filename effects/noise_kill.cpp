@@ -183,5 +183,28 @@ void noise_kill::terminate_noise(std::vector<std::complex<float>>& in, std::vect
 }
 
 
+void noise_kill::reset_stats()
+{
+    for(int i=0;i<(this->len);i++)
+    {
+        prev_out_right.emplace_back(0);
+        prev_out_left.emplace_back(0);
+        prev_samples_right.emplace_back(0);
+        prev_samples_left.emplace_back(0);
+        curr_out_right.emplace_back(0);
+        curr_out_left.emplace_back(0);
+        aux_left.emplace_back(0);
+        aux_right.emplace_back(0);
+
+        noise_mean.emplace_back(0);
+        ventana_anteanterior_transformada.emplace_back(0);
+        ventana_anterior_transformada.emplace_back(0);
+        H_base.emplace_back(0);
+        Signal_out.emplace_back(0);
+
+    }
+}
+
+
 
 

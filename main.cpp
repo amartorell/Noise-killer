@@ -10,7 +10,7 @@ EFFECT_TYPE hashit (int const& in,data& d);
 int main()
 {
     AudioFile<double> audioFile;
-    audioFile.load ("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\rodri_1.wav");//abro el wav que quiero leer
+    audioFile.load ("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\test3.wav");//abro el wav que quiero leer
     int sampleRate = audioFile.getSampleRate();//guardo parámetros del archivo (frecuencia de sampleo)
     int bitDepth = audioFile.getBitDepth();//(bitdepth)
     int numSamples = audioFile.getNumSamplesPerChannel();//cantidad de muestras
@@ -29,27 +29,32 @@ int main()
     {out=new float[n_windows*SAMPLES_PER_WINDOW];}
     else
         {out=new float[2*n_windows*SAMPLES_PER_WINDOW];}//sabiendo la cantidad de muestras que voy a tener genero el vector donde se guardaran las muestras
-    for (int i = 0; i < n_windows; i++)//recorriendo ventana por ventana
+
+
+    for(int j=0; j<3;j++)
     {
-        for(int j=0;j<SAMPLES_PER_WINDOW;j++)//guardo las muestras en cada ventana
+        for (int i = 0; i < n_windows; i++)//recorriendo ventana por ventana
         {
-            if(j+SAMPLES_PER_WINDOW*i<numSamples)//si es parte de las muestras originales solo las guardo
+            for (int j = 0; j < SAMPLES_PER_WINDOW; j++)//guardo las muestras en cada ventana
             {
+                if (j + SAMPLES_PER_WINDOW * i < numSamples)//si es parte de las muestras originales solo las guardo
+                {
 
-                left.emplace_back(audioFile.samples[0][j+SAMPLES_PER_WINDOW*i]);
-                if(numChannels==2) right.emplace_back(audioFile.samples[1][j+SAMPLES_PER_WINDOW*i]);
-            }
-            else//los espacios libres que quedaron se llenan con ceros
-            {
-                left.emplace_back(0);
-                if(numChannels==2) right.emplace_back(0);
-            }
+                    left.emplace_back(audioFile.samples[0][j + SAMPLES_PER_WINDOW * i]);
+                    if (numChannels == 2) right.emplace_back(audioFile.samples[1][j + SAMPLES_PER_WINDOW * i]);
+                } else//los espacios libres que quedaron se llenan con ceros
+                {
+                    left.emplace_back(0);
+                    if (numChannels == 2) right.emplace_back(0);
+                }
 
+            }
+            effect->do_effect(left, right, numChannels);//realizo el efecto por ventana
+            effect->update(left, right, &out[i * (2 * SAMPLES_PER_WINDOW)], numChannels);//actualizo el vector de salida
+            left.clear();//vacío el arreglo donde temporalmente estuvieron las muestras de la ventana para repetir el proceso
+            if (numChannels == 2) right.clear();
         }
-        effect->do_effect(left,right,numChannels);//realizo el efecto por ventana
-        effect->update(left,right,&out[i*(2*SAMPLES_PER_WINDOW)],numChannels);//actualizo el vector de salida
-        left.clear();//vacío el arreglo donde temporalmente estuvieron las muestras de la ventana para repetir el proceso
-        if(numChannels==2) right.clear();
+        effect->reset_stats(0);
     }
     AudioFile<double>::AudioBuffer buffer;//creo un buffer para el nuevo archivo de audio
     if(numChannels==1){buffer.resize (1); buffer[0].resize (SAMPLES_PER_WINDOW*n_windows);}//le doy al tamaño deseado dependiendo el numero de canales y cantidad de muestras por canal
@@ -68,7 +73,7 @@ int main()
     outFile.setBitDepth (bitDepth);//mantengo el bitdepth del archivo de entrada
     outFile.setSampleRate (sampleRate);//mantengo el samplerate
     bool ok = outFile.setAudioBuffer (buffer);//se le agrega el buffer previo
-    outFile.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("rodri_2") +std::string(".wav"));//se crea y guarda el archivo deseado
+    outFile.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("holiwis") +std::string(".wav"));//se crea y guarda el archivo deseado
     return 0;
 }
 

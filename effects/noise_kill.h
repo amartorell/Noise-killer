@@ -25,6 +25,8 @@ public:
 
 	void terminate_noise(std::vector<std::complex<float>>& in, std::vector<std::complex<float>>& out, int n_channels=0);
 
+	void reset_stats(void);
+
 
     int len;
 	int win_noise;
