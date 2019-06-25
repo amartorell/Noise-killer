@@ -28,6 +28,7 @@ public:
     void do_effect(std::vector<std::complex<float>>& left, std::vector<std::complex<float>>& right,int n_channels) override;
     void update(std::vector<std::complex<float>>& left, std::vector<std::complex<float>>& right,float * out,int n_channels) override;
     void temp_upd(std::vector<std::complex<float>>& left, std::vector<std::complex<float>>& right,std::vector<std::complex<float>>& left_o,std::vector<std::complex<float>>& right_o,int n_channels);
+    void reset_stats(void) override{} ;
 };
 
 

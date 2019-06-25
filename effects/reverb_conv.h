@@ -17,6 +17,7 @@ public:
     void update(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,float * out,int n_channels) override;
     float hanning(int i);
     void do_conv(std::vector<std::complex<float>>& curr_left, std::vector<std::complex<float>>& curr_right,int n_channels);
+    void reset_stats(void) override{} ;
     int len;
     std::vector<std::complex<float>> prev_out_right;
     std::vector<std::complex<float>> prev_out_left;
@@ -28,6 +29,7 @@ public:
     std::vector<std::complex<float>> aux_right;
     std::vector<std::complex<float>> freq_resp;
     reverb_conv(){};
+
 
 
 };

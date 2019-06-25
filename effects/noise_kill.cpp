@@ -187,20 +187,20 @@ void noise_kill::reset_stats()
 {
     for(int i=0;i<(this->len);i++)
     {
-        prev_out_right.emplace_back(0);
-        prev_out_left.emplace_back(0);
-        prev_samples_right.emplace_back(0);
-        prev_samples_left.emplace_back(0);
-        curr_out_right.emplace_back(0);
-        curr_out_left.emplace_back(0);
-        aux_left.emplace_back(0);
-        aux_right.emplace_back(0);
+        this->prev_out_right[i]=0;
+        this->prev_out_left[i]=0;
+        this->prev_samples_right[i]=0;
+        this->prev_samples_left[i]=0;
+        this->curr_out_right[i]=0;
+        this->curr_out_left[i]=0;
+        this->aux_left[i]=0;
+        this->aux_right[i]=0;
 
-        noise_mean.emplace_back(0);
-        ventana_anteanterior_transformada.emplace_back(0);
-        ventana_anterior_transformada.emplace_back(0);
-        H_base.emplace_back(0);
-        Signal_out.emplace_back(0);
+        this->noise_mean[i]=0;
+        this->ventana_anterior_transformada[i]=0;
+        this->ventana_anteanterior_transformada[0]=0;
+        this->H_base[i]=0;
+        this->Signal_out[i]=0;
 
     }
 }
