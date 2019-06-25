@@ -10,7 +10,7 @@ EFFECT_TYPE hashit (int const& in,data& d);
 int main()
 {
     AudioFile<double> audioFile;
-    audioFile.load ("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\elpity2.wav");//abro el wav que quiero leer
+    audioFile.load ("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\el_gato.wav");//abro el wav que quiero leer
     int sampleRate = audioFile.getSampleRate();//guardo parámetros del archivo (frecuencia de sampleo)
     int bitDepth = audioFile.getBitDepth();//(bitdepth)
     int numSamples = audioFile.getNumSamplesPerChannel();//cantidad de muestras
@@ -68,7 +68,75 @@ int main()
     outFile.setBitDepth (bitDepth);//mantengo el bitdepth del archivo de entrada
     outFile.setSampleRate (sampleRate);//mantengo el samplerate
     bool ok = outFile.setAudioBuffer (buffer);//se le agrega el buffer previo
-    outFile.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("elpity3") +std::string(".wav"));//se crea y guarda el archivo deseado
+    outFile.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("sin_ruido") +std::string(".wav"));//se crea y guarda el archivo deseado
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //SEGUNDA ITERACIÓN
+    AudioFile<double> audioFile2;
+    audioFile2.load(std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("sin_ruido") +std::string(".wav"));
+    int sampleRate_2 = audioFile2.getSampleRate();//guardo parámetros del archivo (frecuencia de sampleo)
+    int bitDepth_2 = audioFile2.getBitDepth();//(bitdepth)
+    int numSamples_2 = audioFile2.getNumSamplesPerChannel();//cantidad de muestras
+    int numChannels_2 = audioFile2.getNumChannels();//cantidad de canales
+    data in_data2;
+    generic_effect * effect2 =effect_factory::newEffect(hashit(7,in_data2));//Creo el efecto deseado
+    effect2->init(SAMPLES_PER_WINDOW,sampleRate,in_data2);//lo inicializo
+
+    std::vector<std::complex<float>> left2;//arreglos temporarios donde se guardaran las muestras para pasar al efecto deseado
+    std::vector<std::complex<float>> right2;//uno para el auricular derecho y otro para el izquierdo (stereo)
+    int n_windows_2=numSamples_2/SAMPLES_PER_WINDOW;//calculo la cantidad de ventanas requeridas
+    if(numSamples%SAMPLES_PER_WINDOW!=0)//en caso de no tener una cantidad entera, agrego una ventana que va a ser rellenada con 0s
+        n_windows_2++;
+    float * out_2;
+
+    if(numChannels_2==1)
+    {out_2=new float[n_windows_2*SAMPLES_PER_WINDOW];}
+    else
+    {out_2=new float[2*n_windows_2*SAMPLES_PER_WINDOW];}//sabiendo la cantidad de muestras que voy a tener genero el vector donde se guardaran las muestras
+    for (int i = 0; i < n_windows_2; i++)//recorriendo ventana por ventana
+    {
+        for(int j=0;j<SAMPLES_PER_WINDOW;j++)//guardo las muestras en cada ventana
+        {
+            if(j+SAMPLES_PER_WINDOW*i<numSamples_2)//si es parte de las muestras originales solo las guardo
+            {
+
+                left2.emplace_back(audioFile2.samples[0][j+SAMPLES_PER_WINDOW*i]);
+                if(numChannels==2) right2.emplace_back(audioFile2.samples[1][j+SAMPLES_PER_WINDOW*i]);
+            }
+            else//los espacios libres que quedaron se llenan con ceros
+            {
+                left2.emplace_back(0);
+                if(numChannels_2==2) right2.emplace_back(0);
+            }
+
+        }
+        effect->do_effect(left2,right2,numChannels_2);//realizo el efecto por ventana
+        effect->update(left2,right2,&out_2[i*(2*SAMPLES_PER_WINDOW)],numChannels_2);//actualizo el vector de salida
+        left2.clear();//vacío el arreglo donde temporalmente estuvieron las muestras de la ventana para repetir el proceso
+        if(numChannels_2==2) right2.clear();
+    }
+
+    AudioFile<double>::AudioBuffer buffer2;//creo un buffer para el nuevo archivo de audio
+    if(numChannels_2==1){buffer2.resize (1); buffer2[0].resize (SAMPLES_PER_WINDOW*n_windows_2);}//le doy al tamaño deseado dependiendo el numero de canales y cantidad de muestras por canal
+    else {buffer2.resize (2); buffer2[0].resize (SAMPLES_PER_WINDOW*n_windows_2);buffer2[1].resize (SAMPLES_PER_WINDOW*n_windows_2);}
+    for(int i=0;i<n_windows_2*SAMPLES_PER_WINDOW;i++)
+    {
+        buffer2[0][i]=out_2[2*i];//guardo los valores con el efecto aplicado en el buffer
+        if(numChannels_2==2)
+        {
+            buffer2[1][i]=out_2[2*i+1];
+        }
+    }
+
+    delete[] out_2;//libero memoria de objetos instanciados
+    delete effect2;
+    AudioFile<double> outFile2;//genero el archivo de audio de salida
+    outFile2.setBitDepth (bitDepth_2);//mantengo el bitdepth del archivo de entrada
+    outFile2.setSampleRate (sampleRate_2);//mantengo el samplerate
+    bool ok2 = outFile2.setAudioBuffer (buffer2);//se le agrega el buffer previo
+    outFile2.save (std::string("C:\\Users\\marth\\Documents\\ITBA\\ASSD\\TP4\\noise_killer\\Noise-killer\\")+std::string("el_gato_sn") +std::string(".wav"));//se crea y guarda el archivo deseado
+
     return 0;
 }
 
